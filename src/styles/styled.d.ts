@@ -1,3 +1,4 @@
+// src/styles/styled.d.ts
 import 'styled-components';
 
 declare module 'styled-components' {
@@ -7,6 +8,8 @@ declare module 'styled-components' {
       secondary: string;
       background: string;
       text: string;
+      white: string;        
+      black: string;     
     };
     radii: {
       sm: string;
