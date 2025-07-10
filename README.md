@@ -104,4 +104,4 @@ npm run test:ci
   - `/styles` for global theming and utility types
 
 - **Responsive by design:**  
-  The grid layout adapts from 1 column (mobile) up to 4 columns (desktop).
+  The grid layout adapts from 1 column (mobile) up to 3 columns (desktop).
