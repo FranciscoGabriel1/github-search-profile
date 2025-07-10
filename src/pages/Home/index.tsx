@@ -91,7 +91,7 @@ export default function Home(): JSX.Element {
       {usersList.length > 0 && !user && (
         <UserList users={usersList} onSelect={handleSelectUser} />
       )}
-      {searchMade && !loading && usersList.length === 0 && !user && (
+      {searchMade && !loading && usersList.length === 0 && !user && input.trim()!=="" && (
         <S.Message>Nenhum usuário encontrado para "{input}".</S.Message>
       )}
 
