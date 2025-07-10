@@ -1,25 +1,25 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.main<{ center: boolean }>`
+export const Wrapper = styled.main<{ centered: boolean }>`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: ${({ center }) => (center ? 'center' : 'flex-start')};
+  justify-content: ${({ centered }) => (centered ? 'center' : 'flex-start')};
   padding: 1.5rem;
 `;
 
-export const Header = styled.header`
+export const Header = styled.header<{ centered: boolean }>`
   width: 100%;
   max-width: 960px;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ centered }) => (centered ? 'column' : 'row')};
+  align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: ${({ centered }) => (centered ? '2rem' : '1rem')};
 
-  @media (min-width: 600px) {
-    flex-direction: row;
-    align-items: center;
+  @media (max-width: 600px) {
+    flex-direction: column;
   }
 `;
 
@@ -34,14 +34,21 @@ export const Title = styled.h1`
   @media (max-width: 600px) {
     font-size: 1.5rem;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const SearchControls = styled.div`
-  flex: 1;
+  width: 100%;
+  max-width: 500px;
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
 
-  @media (max-width: 600px) {
-    flex-direction: column;
+  @media (min-width: 600px) {
+    flex-direction: row;
+    align-items: center;
   }
 `;

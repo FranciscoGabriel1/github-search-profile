@@ -1,25 +1,24 @@
 import { JSX, useState } from 'react';
-import { useNavigate }   from 'react-router-dom';
-import { UilGithubAlt }  from '@iconscout/react-unicons';
+import { useNavigate } from 'react-router-dom';
+import { UilGithubAlt } from '@iconscout/react-unicons';
 
 import * as S from './Home.styles';
 import CustomInput from '@/components/CustomInput';
 import CustomButton, { CustomButtonVariant } from '@/components/CustomButton';
 import ListResultSearch from '@/components/ListResultSearch';
-import UserInfo   from '@/components/UserInfo';
-import RepoSort   from '@/components/RepoSort';
+import UserInfo from '@/components/UserInfo';
+import RepoSort from '@/components/RepoSort';
 import { useUserContext } from '@/context/UserContext';
 
 export default function Home(): JSX.Element {
   const [input, setInput] = useState('');
   const {
     fetchUser,
+    clearSearch,
     loading,
     searchMade,
     user,
-    clearSearch,          
   } = useUserContext();
-
   const navigate = useNavigate();
 
   const handleSearch = async (): Promise<void> => {
@@ -29,29 +28,26 @@ export default function Home(): JSX.Element {
   };
 
   const handleReset = (): void => {
-    clearSearch();  
-    setInput(''); 
-    navigate('/');  
+    clearSearch();
+    setInput('');
+    navigate('/');
   };
 
   return (
-    <S.Wrapper center={!searchMade}>
-      <S.Header>
-        <button onClick={handleReset} style={{ all: 'unset', cursor: 'pointer' }}>
-          <S.Title>
-            <UilGithubAlt size={28} />
-            GitHub User Search
-          </S.Title>
-        </button>
+    <S.Wrapper centered={!searchMade}>
+      <S.Header centered={!searchMade}>
+        <S.Title onClick={handleReset}>
+          <UilGithubAlt size={28} />
+          GitHub User Search
+        </S.Title>
 
         <S.SearchControls>
           <CustomInput
-            label="Pesquisar usuário"
             value={input}
             onChange={setInput}
+            placeholder="Pesquisar o usuário GitHub"
             onSubmit={handleSearch}
           />
-
           <CustomButton
             title="Pesquisar"
             onClick={handleSearch}
