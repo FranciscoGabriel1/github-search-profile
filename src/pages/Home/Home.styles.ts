@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.main<{ centered: boolean }>`
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -51,4 +52,11 @@ export const SearchControls = styled.div`
     flex-direction: row;
     align-items: center;
   }
+`;
+
+export const AnimationToggle = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
 `;

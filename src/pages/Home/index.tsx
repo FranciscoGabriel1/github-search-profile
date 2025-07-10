@@ -10,10 +10,13 @@ import ListResultSearch from '@/components/ListResultSearch';
 import UserInfo from '@/components/UserInfo';
 import RepoSort from '@/components/RepoSort';
 import { useUserContext } from '@/context/UserContext';
+import { useAnimation } from '@/context/AnimationContext';
+import Switch from '@/components/Switch';
 
 export default function Home(): JSX.Element {
   const [input, setInput] = useState('');
   const { fetchUser, clearSearch, loading, searchMade, user } = useUserContext();
+  const { enabled, toggle } = useAnimation();
   const navigate = useNavigate();
 
   const handleSearch = async (): Promise<void> => {
@@ -30,6 +33,14 @@ export default function Home(): JSX.Element {
 
   return (
     <S.Wrapper centered={!searchMade}>
+      <S.AnimationToggle>
+        <Switch
+          checked={enabled}
+          onChange={toggle}
+          aria-label="Toggle background animation"
+        />
+      </S.AnimationToggle>
+
       <S.Header centered={!searchMade}>
         <S.Title onClick={handleReset}>
           <Lottie
@@ -62,9 +73,7 @@ export default function Home(): JSX.Element {
       </S.Header>
 
       {user && <UserInfo user={user} />}
-
       {!loading && user && <RepoSort />}
-
       <ListResultSearch />
     </S.Wrapper>
   );
