@@ -30,6 +30,22 @@ export class GithubService {
     return items;
   }
 
+  public async searchUsers(query: string): Promise<IUser[]> {
+    const q = query
+      .trim()
+      .split(/\s+/)
+      .map(term => encodeURIComponent(term))
+      .join('+');
+    const url = [
+      `${API_URLS.GITHUB_BASE}/search/users`,
+      `?q=${q}+in:login+in:name`,
+      `&per_page=100`
+    ].join('');
+
+    const { items } = await this.http.get<{ items: IUser[] }>(url);
+    return items;
+  }
+
   public async getRepo(owner: string, repo: string): Promise<IRepo> {
     const url = `${API_URLS.GITHUB_BASE}/repos/${owner}/${repo}`;
     return this.http.get<IRepo>(url);
