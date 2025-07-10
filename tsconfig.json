@@ -28,7 +28,7 @@
     "noFallthroughCasesInSwitch": true,
 
 
-    "types": ["node"],
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "skipLibCheck": true
   },
 
