@@ -6,9 +6,11 @@ import { formatIsoDateToBrDateTime } from '@/utils';
 import {
   UilStar,
   UilEye,
+  UilArrowLeft
 } from '@iconscout/react-unicons';
 import * as S from './RepoDetails.styles';
 import { AxiosHttpClient } from '@/modules/ioc/HttpClient';
+import SkeletonCards from '@/components/SkeletonCards';
 
 export default function RepoDetails(): JSX.Element {
   const { owner, repo } = useParams();
@@ -29,13 +31,21 @@ export default function RepoDetails(): JSX.Element {
     })();
   }, [owner, repo]);
 
-  if (loading) return <S.Wrapper><p>Carregando…</p></S.Wrapper>;
+ if (loading) {
+  return (
+    <S.Wrapper>
+      <SkeletonCards />
+    </S.Wrapper>
+  );
+}
   if (!data) return <S.Wrapper><p>Repositório não encontrado.</p></S.Wrapper>;
 
   return (
     <S.Wrapper>
       <S.BackLink>
-        <Link to="/">← Voltar</Link>
+        <Link to="/" aria-label="Voltar" title='Voltar'>
+          <UilArrowLeft size={24} />
+        </Link>
       </S.BackLink>
 
       <S.Title>{data.full_name}</S.Title>
