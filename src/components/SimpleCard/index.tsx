@@ -5,7 +5,7 @@ interface SimpleCardProps {
   children: ReactNode;
   width?: string | number;
   height?: string | number;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export default function SimpleCard({

@@ -3,14 +3,18 @@ import styled from 'styled-components';
 export const GridContainer = styled.div`
   display: grid;
   gap: 1rem;
-  grid-template-columns: 1fr;
 
-  @media (min-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  /* força o grid a ocupar 100% do espaço disponível */
+  width: 100%;
+  max-width: 960px;      /* opcional */
+  margin: 0 auto;
 
-  @media (min-width: 960px) {
-    grid-template-columns: repeat(3, 1fr);
+  /* de 1 a N colunas: cada coluna no mínimo 250px, no máximo 1fr */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+  /* em telas pequenas, 1 coluna só */
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
   }
 `;
 
