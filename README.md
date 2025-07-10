@@ -54,14 +54,6 @@ yarn test
 # Or using npm
 npm test
 
-# CI + coverage report
-# Using Yarn
-yarn test:ci
-
-# Or using npm
-npm run test:ci
-
-
 ```
 
 ## Features
