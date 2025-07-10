@@ -23,7 +23,7 @@ export default function Home(): JSX.Element {
     fetchUser,
     loading,
     searchMade,
-    clearSearch
+    clearSearch,
   } = useUserContext();
 
   const { enabled, toggle } = useAnimation();
@@ -90,6 +90,9 @@ export default function Home(): JSX.Element {
 
       {usersList.length > 0 && !user && (
         <UserList users={usersList} onSelect={handleSelectUser} />
+      )}
+      {searchMade && !loading && usersList.length === 0 && !user && (
+        <S.Message>Nenhum usuário encontrado para "{input}".</S.Message>
       )}
 
       {user && <UserInfo user={user} />}

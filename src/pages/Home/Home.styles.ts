@@ -6,8 +6,15 @@ export const Wrapper = styled.main<{ centered: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: ${({ centered }) => (centered ? 'center' : 'flex-start')};
+  justify-content: ${({ centered }) =>
+    centered ? 'center' : 'flex-start'};
   padding: 1.5rem;
+`;
+
+export const AnimationToggle = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 `;
 
 export const Header = styled.header<{ centered: boolean }>`
@@ -31,13 +38,10 @@ export const Title = styled.h1`
   margin: 0;
   font-size: 2rem;
   color: ${({ theme }) => theme.colors.text};
+  cursor: pointer;
 
   @media (max-width: 600px) {
     font-size: 1.5rem;
-  }
-
-  &:hover {
-    cursor: pointer;
   }
 `;
 
@@ -54,9 +58,9 @@ export const SearchControls = styled.div`
   }
 `;
 
-export const AnimationToggle = styled.div`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10;
+export const Message = styled.p`
+  margin-top: 2rem;
+  color: ${({ theme }) => theme.colors.text};
+  font-size: 1rem;
+  font-style: italic;
 `;
