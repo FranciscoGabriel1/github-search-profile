@@ -1,7 +1,8 @@
 import { JSX, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UilGithubAlt } from '@iconscout/react-unicons';
+import Lottie from 'lottie-react';
 
+import githubAnimation from '@/assets/animations/githublogo.json';
 import * as S from './Home.styles';
 import CustomInput from '@/components/CustomInput';
 import CustomButton, { CustomButtonVariant } from '@/components/CustomButton';
@@ -12,13 +13,7 @@ import { useUserContext } from '@/context/UserContext';
 
 export default function Home(): JSX.Element {
   const [input, setInput] = useState('');
-  const {
-    fetchUser,
-    clearSearch,
-    loading,
-    searchMade,
-    user,
-  } = useUserContext();
+  const { fetchUser, clearSearch, loading, searchMade, user } = useUserContext();
   const navigate = useNavigate();
 
   const handleSearch = async (): Promise<void> => {
@@ -37,7 +32,12 @@ export default function Home(): JSX.Element {
     <S.Wrapper centered={!searchMade}>
       <S.Header centered={!searchMade}>
         <S.Title onClick={handleReset}>
-          <UilGithubAlt size={28} />
+          <Lottie
+            animationData={githubAnimation}
+            loop
+            autoplay
+            style={{ width: 50, height: 50 }}
+          />
           GitHub User Search
         </S.Title>
 
